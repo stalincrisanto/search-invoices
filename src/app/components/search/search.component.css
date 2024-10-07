@@ -13,3 +13,8 @@ mat-form-field {
 mat-form-field:last-child {
     margin-right: 0;
 }
+
+mat-card-title {
+    text-align: center;
+    padding-top: 10px;
+}
