@@ -1,27 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SearchService } from 'src/app/services/search.service';
+import { Invoice, Person, SearchParams } from 'src/app/types/person.type';
+import { PERSONS_DATA } from '../utils/data';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  myForm: FormGroup;
+  dataForm: FormGroup;
+  invoices: Invoice[] = [];
+  person: Person | null = null;
 
-  constructor(private fb: FormBuilder) {
-    this.myForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      message: [''],
-      date: [''],
+  constructor(private fb: FormBuilder, private searchService: SearchService) {
+    this.dataForm = this.fb.group({
+      cardId: ['', Validators.required],
+      dateStart: [''],
+      dateEnd: [''],
     });
   }
 
   onSubmit() {
-    if (this.myForm.valid) {
-      console.log(this.myForm.value);
-      // Aquí puedes manejar el envío del formulario
+    if (this.dataForm.valid) {
+      this.searchService
+        .getInvoicesOfPerson(this.dataForm.value as SearchParams)
+        .subscribe((invoices) => {
+          this.invoices = invoices;
+          this.person =
+            PERSONS_DATA.find(
+              ({ cardId }) => cardId === this.dataForm.get('cardId')?.value
+            ) || null;
+        });
     }
   }
 }

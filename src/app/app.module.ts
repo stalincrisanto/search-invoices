@@ -17,12 +17,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; 
+import { HttpClientModule } from '@angular/common/http';
+import { InfoPersonComponent } from './components/info-person/info-person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     TableComponent,
+    InfoPersonComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDividerModule,
     MatDatepickerModule,
     MatTableModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule
   ],
   exports: [
   ],
