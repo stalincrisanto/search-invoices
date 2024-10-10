@@ -1,1 +1,6 @@
-<p>info-person works!</p>
+<div *ngIf="person">
+  <div class="form-container">
+    <h4>Nombres y apellidos:</h4>
+    <h4>{{ person.name }} {{ person.lastName }}</h4>
+  </div>
+</div>
