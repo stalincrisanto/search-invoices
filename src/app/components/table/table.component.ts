@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Invoice, SearchParams } from 'src/app/types/person.type';
+import { Invoice } from 'src/app/types/invoice.type';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +9,13 @@ import { Invoice, SearchParams } from 'src/app/types/person.type';
 export class TableComponent {
   @Input() invoices: Invoice[] = [];
 
-  protected displayedColumns: string[] = ['id', 'total', 'date'];
+  protected displayedColumns: string[] = [
+    'chsDataDat',
+    'rutaXmlEnviado',
+    'rutaXmlRecibido',
+    'rutaXmlComprobanteRecibido',
+    'rutaPdfGenerado',
+  ];
 
   constructor() {}
 }

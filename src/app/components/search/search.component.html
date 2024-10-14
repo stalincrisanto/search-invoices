@@ -12,9 +12,21 @@
         <div class="form-row">
           <mat-form-field appearance="fill">
             <mat-label>Cédula</mat-label>
-            <input matInput formControlName="cardId" id="cardId" required />
+            <input
+              matInput
+              formControlName="cardId"
+              id="cardId"
+              required
+              inputmode="numeric"
+              (keydown)="preventNonNumeric($event)"
+            />
             <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
               El número de cédula es obligatorio.
+            </mat-error>
+            <mat-error
+              *ngIf="dataForm.get('cardId')?.hasError('cardIdLengthValidator')"
+            >
+              El número de cédula debe tener 10 dígitos.
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
@@ -30,9 +42,9 @@
               [for]="dateStart"
             ></mat-datepicker-toggle>
             <mat-datepicker #dateStart></mat-datepicker>
-            <!-- <mat-error *ngIf="myForm.get('email')?.hasError('email')">
-                                Debe ser un correo electrónico válido.
-                            </mat-error> -->
+            <mat-error *ngIf="dataForm.get('dateStart')?.hasError('required')">
+              La fecha de inicio es obligatorio.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -41,6 +53,7 @@
               matInput
               [matDatepicker]="dateEnd"
               formControlName="dateEnd"
+              [min]="dataForm.get('dateStart')?.value"
             />
             <mat-hint>Mes/Día/Año</mat-hint>
             <mat-datepicker-toggle
@@ -48,9 +61,9 @@
               [for]="dateEnd"
             ></mat-datepicker-toggle>
             <mat-datepicker #dateEnd></mat-datepicker>
-            <!-- <mat-error *ngIf="myForm.get('email')?.hasError('email')">
-                            Debe ser un correo electrónico válido.
-                        </mat-error> -->
+            <mat-error *ngIf="dataForm.get('dateEnd')?.hasError('required')">
+              La fecha de fin es obligatorio.
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -59,7 +72,10 @@
       <br />
 
       <mat-divider role="separator"></mat-divider>
-      <app-info-person [person]="person"></app-info-person>
+      <div class="form-container">
+        <h4>Nombres y apellidos:</h4>
+        <h4>{{ personName }}</h4>
+      </div>
       <app-table [invoices]="invoices"></app-table>
     </mat-card-content>
   </mat-card>

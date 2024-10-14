@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SearchService } from 'src/app/services/search.service';
-import { Invoice, Person, SearchParams } from 'src/app/types/person.type';
-import { PERSONS_DATA } from '../utils/data';
+import { Invoice, SearchParams } from 'src/app/types/invoice.type';
+import { cardIdLengthValidator } from 'src/app/validators/id.validator';
 
 @Component({
   selector: 'app-search',
@@ -12,14 +12,16 @@ import { PERSONS_DATA } from '../utils/data';
 export class SearchComponent {
   dataForm: FormGroup;
   invoices: Invoice[] = [];
-  person: Person | null = null;
+  personName: string = '';
 
   constructor(private fb: FormBuilder, private searchService: SearchService) {
-    this.dataForm = this.fb.group({
-      cardId: ['', Validators.required],
-      dateStart: [''],
-      dateEnd: [''],
-    });
+    this.dataForm = this.fb.group(
+      {
+        cardId: ['', [Validators.required, cardIdLengthValidator()]],
+        dateStart: [new Date(), [Validators.required]],
+        dateEnd: ['', [Validators.required]],
+      }
+    );
   }
 
   onSubmit() {
@@ -28,11 +30,30 @@ export class SearchComponent {
         .getInvoicesOfPerson(this.dataForm.value as SearchParams)
         .subscribe((invoices) => {
           this.invoices = invoices;
-          this.person =
-            PERSONS_DATA.find(
-              ({ cardId }) => cardId === this.dataForm.get('cardId')?.value
-            ) || null;
+          this.personName = invoices[0].accountRazon;
         });
+    }
+  }
+
+  preventNonNumeric(event: KeyboardEvent) {
+    const key = event.key;
+    const controlKeys = [
+      'Backspace',
+      'Tab',
+      'Enter',
+      'ArrowLeft',
+      'ArrowRight',
+      'Delete',
+      'Home',
+      'End',
+    ];
+
+    if (controlKeys.includes(key)) {
+      return;
+    }
+
+    if (!/^[0-9]$/.test(key)) {
+      event.preventDefault();
     }
   }
 }
