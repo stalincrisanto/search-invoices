@@ -19,6 +19,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; 
 import { HttpClientModule } from '@angular/common/http';
 import { InfoPersonComponent } from './components/info-person/info-person.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { InfoPersonComponent } from './components/info-person/info-person.compon
     MatDatepickerModule,
     MatTableModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   exports: [
   ],

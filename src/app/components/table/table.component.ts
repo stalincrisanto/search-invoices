@@ -7,7 +7,7 @@ import { Invoice, SearchParams } from 'src/app/types/person.type';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  @Input() invoices: Invoice[] = [];
+  @Input() invoices: Invoice[] | null = [];
 
   protected displayedColumns: string[] = ['id', 'total', 'date'];
 

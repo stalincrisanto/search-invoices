@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from 'src/app/services/search.service';
 import { Invoice, Person, SearchParams } from 'src/app/types/person.type';
 import { PERSONS_DATA } from '../utils/data';
@@ -11,14 +12,18 @@ import { PERSONS_DATA } from '../utils/data';
 })
 export class SearchComponent {
   dataForm: FormGroup;
-  invoices: Invoice[] = [];
-  person: Person | null = null;
+  invoices: Invoice[] | null = null;
+  personName: string | null = null;
 
-  constructor(private fb: FormBuilder, private searchService: SearchService) {
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService,
+    private snackbar: MatSnackBar
+  ) {
     this.dataForm = this.fb.group({
-      cardId: ['', Validators.required],
-      dateStart: [''],
-      dateEnd: [''],
+      cardId: ['', [Validators.required]],
+      dateStart: [new Date(), [Validators.required]],
+      dateEnd: ['', [Validators.required]],
     });
   }
 
@@ -27,12 +32,47 @@ export class SearchComponent {
       this.searchService
         .getInvoicesOfPerson(this.dataForm.value as SearchParams)
         .subscribe((invoices) => {
-          this.invoices = invoices;
-          this.person =
-            PERSONS_DATA.find(
-              ({ cardId }) => cardId === this.dataForm.get('cardId')?.value
-            ) || null;
+          if (invoices) {
+            this.invoices = invoices;
+            // this.personName = invoices?.[0].accountRazon!;
+          } else {
+            this.snackbar.open('No se encontró información', '', {
+              duration: 3000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'],
+            });
+            this.invoices = null;
+            this.personName = null;
+          }
         });
     }
+  }
+
+  preventNonNumeric(event: KeyboardEvent) {
+    const key = event.key;
+    const controlKeys = [
+      'Backspace',
+      'Tab',
+      'Enter',
+      'ArrowLeft',
+      'ArrowRight',
+      'Delete',
+      'Home',
+      'End',
+    ];
+
+    if (controlKeys.includes(key)) {
+      return;
+    }
+
+    if (!/^[0-9]$/.test(key)) {
+      event.preventDefault();
+    }
+  }
+
+  cleanFields() {
+    this.personName = null;
+    this.invoices = null;
   }
 }
