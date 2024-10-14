@@ -1,7 +1,27 @@
 <table mat-table [dataSource]="invoices || []" class="mat-elevation-z8">
   <ng-container matColumnDef="chsDataDat">
     <th mat-header-cell *matHeaderCellDef> Fecha </th>
-    <td mat-cell *matCellDef="let invoice"> {{invoice.date}} </td>
+    <td mat-cell *matCellDef="let invoice"> {{invoice.chsDataDat}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rutaXmlEnviado">
+    <th mat-header-cell *matHeaderCellDef> Ruta xml enviado </th>
+    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaXmlEnviado}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rutaXmlRecibido">
+    <th mat-header-cell *matHeaderCellDef> Ruta xml recibido </th>
+    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaXmlRecibido}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rutaXmlComprobanteRecibido">
+    <th mat-header-cell *matHeaderCellDef> Ruta xml comprobante recibido </th>
+    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaXmlComprobanteRecibido}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rutaPdfGenerado">
+    <th mat-header-cell *matHeaderCellDef> Ruta pdf generado </th>
+    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaPdfGenerado}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

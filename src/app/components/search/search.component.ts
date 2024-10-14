@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from 'src/app/services/search.service';
-import { Invoice, Person, SearchParams } from 'src/app/types/person.type';
-import { PERSONS_DATA } from '../utils/data';
+import { Invoice, SearchParams } from 'src/app/types/invoice.type';
+import { cardIdLengthValidator } from 'src/app/validators/id.validator';
 
 @Component({
   selector: 'app-search',
@@ -21,7 +21,7 @@ export class SearchComponent {
     private snackbar: MatSnackBar
   ) {
     this.dataForm = this.fb.group({
-      cardId: ['', [Validators.required]],
+      cardId: ['', [Validators.required, cardIdLengthValidator()]],
       dateStart: [new Date(), [Validators.required]],
       dateEnd: ['', [Validators.required]],
     });

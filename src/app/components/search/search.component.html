@@ -24,6 +24,11 @@
             <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
               El número de cédula es obligatorio.
             </mat-error>
+            <mat-error
+              *ngIf="dataForm.get('cardId')?.hasError('cardIdLengthValidator')"
+            >
+              El número de cédula debe tener 10 dígitos.
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Fecha desde</mat-label>
@@ -38,9 +43,9 @@
               [for]="dateStart"
             ></mat-datepicker-toggle>
             <mat-datepicker #dateStart></mat-datepicker>
-            <!-- <mat-error *ngIf="myForm.get('email')?.hasError('email')">
-                                Debe ser un correo electrónico válido.
-                            </mat-error> -->
+            <mat-error *ngIf="dataForm.get('dateStart')?.hasError('required')">
+              La fecha de inicio es obligatorio.
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" floatLabel="always">
             <mat-label>Fecha hasta</mat-label>
@@ -57,9 +62,9 @@
               [for]="dateEnd"
             ></mat-datepicker-toggle>
             <mat-datepicker #dateEnd></mat-datepicker>
-            <!-- <mat-error *ngIf="myForm.get('email')?.hasError('email')">
-                            Debe ser un correo electrónico válido.
-                        </mat-error> -->
+            <mat-error *ngIf="dataForm.get('dateEnd')?.hasError('required')">
+              La fecha de fin es obligatorio.
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="btn-group">
@@ -68,7 +73,6 @@
             mat-raised-button
             color="primary"
             type="submit"
-            
           >
             Buscar
           </button>
@@ -87,10 +91,12 @@
 
       <mat-divider role="separator"></mat-divider>
       <div class="form-container" *ngIf="personName != null">
-        <h4>Nombres y apellidos:</h4>
-        <h4>{{ personName }}</h4>
+        <div class="form-container">
+          <h4>Nombres y apellidos:</h4>
+          <h4>{{ personName }}</h4>
+        </div>
+        <app-table [invoices]="invoices"></app-table>
       </div>
-      <app-table [invoices]="invoices"></app-table>
     </mat-card-content>
   </mat-card>
 </div>

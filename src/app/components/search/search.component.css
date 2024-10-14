@@ -1,17 +1,16 @@
-
 .form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 mat-form-field {
-    flex: 1;
-    margin-right: 16px;
+  flex: 1;
+  margin-right: 16px;
 }
 
 mat-form-field:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 mat-card-title {
