@@ -7,7 +7,7 @@ import { Invoice } from 'src/app/types/invoice.type';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  @Input() invoices: Invoice[] = [];
+  @Input() invoices: Invoice[] | null = [];
 
   protected displayedColumns: string[] = [
     'chsDataDat',

@@ -10,7 +10,7 @@
     <mat-card-content>
       <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline" floatLabel="always">
             <mat-label>Cédula</mat-label>
             <input
               matInput
@@ -19,6 +19,7 @@
               required
               inputmode="numeric"
               (keydown)="preventNonNumeric($event)"
+              placeholder="Ingrese el número de cédula a buscar"
             />
             <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
               El número de cédula es obligatorio.
@@ -29,7 +30,7 @@
               El número de cédula debe tener 10 dígitos.
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Fecha desde</mat-label>
             <input
               matInput
@@ -46,14 +47,14 @@
               La fecha de inicio es obligatorio.
             </mat-error>
           </mat-form-field>
-
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline" floatLabel="always">
             <mat-label>Fecha hasta</mat-label>
             <input
               matInput
               [matDatepicker]="dateEnd"
               formControlName="dateEnd"
               [min]="dataForm.get('dateStart')?.value"
+              placeholder="Seleccione una fecha"
             />
             <mat-hint>Mes/Día/Año</mat-hint>
             <mat-datepicker-toggle
@@ -66,13 +67,31 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-        <button mat-raised-button color="primary" type="submit">Buscar</button>
+        <div class="btn-group">
+          <button
+            class="btn-search"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            
+          >
+            Buscar
+          </button>
+          <button
+            class="btn-search"
+            mat-raised-button
+            color="secondary"
+            type="reset"
+            (click)="cleanFields()"
+          >
+            Limpiar
+          </button>
+        </div>
       </form>
       <br />
 
       <mat-divider role="separator"></mat-divider>
-      <div class="form-container">
+      <div class="form-container" *ngIf="personName != null">
         <h4>Nombres y apellidos:</h4>
         <h4>{{ personName }}</h4>
       </div>

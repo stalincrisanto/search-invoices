@@ -25,11 +25,11 @@ export class SearchService {
   //   return of(data.length > 0 ? data : null);
   // }
 
-  getInvoicesOfPerson(input: SearchParams): Observable<Invoice[]> {
+  getInvoicesOfPerson(input: SearchParams): Observable<Invoice[] | null> {
     const { cardId } = input;
     const invoicesOfPerson = INVOICES_DATA.filter(
       ({ accoutFiscalId }) => accoutFiscalId === cardId
     );
-    return of(invoicesOfPerson);
+    return invoicesOfPerson.length != 0 ? of(invoicesOfPerson) : of(null);
   }
 }

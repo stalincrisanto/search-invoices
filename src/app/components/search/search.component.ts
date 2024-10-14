@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from 'src/app/services/search.service';
 import { Invoice, SearchParams } from 'src/app/types/invoice.type';
 import { cardIdLengthValidator } from 'src/app/validators/id.validator';
@@ -11,17 +12,19 @@ import { cardIdLengthValidator } from 'src/app/validators/id.validator';
 })
 export class SearchComponent {
   dataForm: FormGroup;
-  invoices: Invoice[] = [];
-  personName: string = '';
+  invoices: Invoice[] | null = null;
+  personName: string | null = null;
 
-  constructor(private fb: FormBuilder, private searchService: SearchService) {
-    this.dataForm = this.fb.group(
-      {
-        cardId: ['', [Validators.required, cardIdLengthValidator()]],
-        dateStart: [new Date(), [Validators.required]],
-        dateEnd: ['', [Validators.required]],
-      }
-    );
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService,
+    private snackbar: MatSnackBar
+  ) {
+    this.dataForm = this.fb.group({
+      cardId: ['', [Validators.required, cardIdLengthValidator()]],
+      dateStart: [new Date(), [Validators.required]],
+      dateEnd: ['', [Validators.required]],
+    });
   }
 
   onSubmit() {
@@ -29,8 +32,19 @@ export class SearchComponent {
       this.searchService
         .getInvoicesOfPerson(this.dataForm.value as SearchParams)
         .subscribe((invoices) => {
-          this.invoices = invoices;
-          this.personName = invoices[0].accountRazon;
+          if (invoices) {
+            this.invoices = invoices;
+            this.personName = invoices?.[0].accountRazon!;
+          } else {
+            this.snackbar.open('No se encontró información', '', {
+              duration: 3000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'],
+            });
+            this.invoices = null;
+            this.personName = null;
+          }
         });
     }
   }
@@ -55,5 +69,10 @@ export class SearchComponent {
     if (!/^[0-9]$/.test(key)) {
       event.preventDefault();
     }
+  }
+
+  cleanFields() {
+    this.personName = null;
+    this.invoices = null;
   }
 }
