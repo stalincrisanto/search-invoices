@@ -8,12 +8,7 @@ import { SearchComponent } from './components/search/search.component';
 import { TableComponent } from './components/table/table.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -21,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from "./shared/shared.module";
+import { SearchInvoicesModule } from './features/search-invoices/search-invoices.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +36,8 @@ import { SharedModule } from "./shared/shared.module";
     HttpClientModule,
     MatSnackBarModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    SearchInvoicesModule
 ],
   exports: [],
   providers: [],
