@@ -1,0 +1,19 @@
+<mat-form-field appearance="outline" floatLabel="always">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="datePickerId"
+    [placeholder]="placeholder"
+    (dateInput)="setValue($event.value)"
+  />
+  <mat-hint>Mes/Día/Año</mat-hint>
+  <mat-datepicker-toggle
+    matIconSuffix
+    [for]="datePickerId"
+  ></mat-datepicker-toggle>
+  <mat-datepicker #datePickerId></mat-datepicker>
+</mat-form-field>
+
+<!-- <mat-error *ngIf="dataForm.get('dateStart')?.hasError('required')">
+  La fecha de inicio es obligatorio.
+</mat-error> -->

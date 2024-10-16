@@ -1,0 +1,26 @@
+<!-- PARA EL INPUT DE TIPO NUMBER 
+ (keydown)="preventNonNumeric($event)" -->
+
+<mat-form-field appearance="outline" floatLabel="always">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [id]="id"
+    [required]="required"
+    [inputMode]="inputmode"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="handleInput($event)"
+  />
+
+  <!-- <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
+    El número de cédula es obligatorio.
+  </mat-error>
+  <mat-error
+    *ngIf="dataForm.get('cardId')?.hasError('cardIdLengthValidator')"
+  >
+    El número de cédula debe tener 10 dígitos.
+  </mat-error> -->
+</mat-form-field>
+
+

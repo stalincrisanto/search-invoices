@@ -21,14 +21,19 @@ export class SearchComponent {
     private snackbar: MatSnackBar
   ) {
     this.dataForm = this.fb.group({
-      cardId: ['', [Validators.required, cardIdLengthValidator()]],
-      dateStart: [new Date(), [Validators.required]],
-      dateEnd: ['', [Validators.required]],
+      // cardId: ['', [Validators.required, cardIdLengthValidator()]],
+      // dateStart: [new Date(), [Validators.required]],
+      // dateEnd: ['', [Validators.required]],
+
+      cardId: ['', []],
+      dateStart: ['',[]],
+      dateEnd: ['', []],
     });
   }
 
   onSubmit() {
     if (this.dataForm.valid) {
+      console.log(this.dataForm.value)
       this.searchService
         .getInvoicesOfPerson(this.dataForm.value as SearchParams)
         .subscribe((invoices) => {

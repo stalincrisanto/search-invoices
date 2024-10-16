@@ -1,0 +1,114 @@
+<!-- <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Cédula</mat-label>
+            <input
+              matInput
+              formControlName="cardId"
+              id="cardId"
+              required
+              inputmode="numeric"
+              (keydown)="preventNonNumeric($event)"
+              placeholder="Ingrese el número de cédula a buscar"
+            />
+            <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
+              El número de cédula es obligatorio.
+            </mat-error>
+            <mat-error
+              *ngIf="dataForm.get('cardId')?.hasError('cardIdLengthValidator')"
+            >
+              El número de cédula debe tener 10 dígitos.
+            </mat-error>
+          </mat-form-field> -->
+
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Fecha desde</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dateStart"
+              formControlName="dateStart"
+            />
+            <mat-hint>Mes/Día/Año</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dateStart"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dateStart></mat-datepicker>
+            <mat-error *ngIf="dataForm.get('dateStart')?.hasError('required')">
+              La fecha de inicio es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Fecha hasta</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dateEnd"
+              formControlName="dateEnd"
+              [min]="dataForm.get('dateStart')?.value"
+              placeholder="Seleccione una fecha"
+            />
+            <mat-hint>Mes/Día/Año</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dateEnd"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dateEnd></mat-datepicker>
+            <mat-error *ngIf="dataForm.get('dateEnd')?.hasError('required')">
+              La fecha de fin es obligatorio.
+            </mat-error>
+          </mat-form-field> -->
+
+
+
+<!-- OTRA VERSION -->
+
+<div class="container">
+  <mat-card>
+    <mat-card-title> Buscar persona </mat-card-title>
+    <br />
+    <mat-card-content>
+      <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <!-- TODO: refactor errors as dynamic in input/inputdate component -->
+          <!-- TODO: add type to generic input -->
+          <!-- Input mode for show numeric keys on cellphones -->
+          <app-input
+            id="cardId"
+            formControlName="cardId"
+            placeholder="Ingrese el número de cédula a buscar"
+            label="Número de cédula"
+            inputmode="numeric"
+          />
+          <!-- <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
+            El número de cédula es obligatorio.
+          </mat-error>
+          <mat-error
+            *ngIf="dataForm.get('cardId')?.hasError('cardIdLengthValidator')"
+          >
+            El número de cédula debe tener 10 dígitos.
+          </mat-error> -->
+          <app-input-date
+            label="Fecha desde"
+            datePickerId="dateStart"
+            placeholder="Selecciona una fecha"
+            formControlName="dateStart"
+          />
+        </div>
+        <div class="btn-group">
+          <app-button label="Buscar"></app-button>
+          <app-button
+            label="Limpiar"
+            color="secondary"
+            type="reset"
+          ></app-button>
+        </div>
+      </form>
+      <br />
+
+      <mat-divider role="separator"></mat-divider>
+      <div class="form-container" *ngIf="personName != null">
+        <h4>Nombres y apellidos:</h4>
+        <h4>{{ personName }}</h4>
+      </div>
+      <app-table [invoices]="invoices"></app-table>
+    </mat-card-content>
+  </mat-card>
+</div>
