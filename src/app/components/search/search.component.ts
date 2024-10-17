@@ -34,7 +34,7 @@ export class SearchComponent {
         .subscribe((invoices) => {
           if (invoices) {
             this.invoices = invoices;
-            // this.personName = invoices?.[0].accountRazon!;
+            this.personName = invoices?.[0].accountRazon!;
           } else {
             this.snackbar.open('No se encontró información', '', {
               duration: 3000,
