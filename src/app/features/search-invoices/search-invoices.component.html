@@ -1,2 +1,2 @@
-<app-search-form></app-search-form>
-<app-search-result></app-search-result>
+<app-search-form (searchResults)="onSearchResults($event || [])"></app-search-form>
+<app-search-result [invoices]="invoices"></app-search-result>

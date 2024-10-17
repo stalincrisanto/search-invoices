@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SearchService } from '../../services/search.service';
+import { SearchParams } from '../../../../shared/models/search.model';
+import { Invoice } from '../../../../shared/models/invoice.model';
 
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.css']
+  styleUrls: ['./search-form.component.css'],
 })
 export class SearchFormComponent {
+  @Output() searchResults = new EventEmitter<Invoice[] | null>();
+
   dataForm: FormGroup;
-  // invoices: Invoice[] | null = null;
-  personName: string | null = null;
+  // personName: string | null = null;
 
   constructor(
     private fb: FormBuilder,
-    // private searchService: SearchService,
+    private searchInvoices: SearchService,
     private snackbar: MatSnackBar
   ) {
     this.dataForm = this.fb.group({
@@ -23,32 +27,35 @@ export class SearchFormComponent {
       // dateEnd: ['', [Validators.required]],
 
       cardId: ['', []],
-      dateStart: ['',[]],
+      dateStart: ['', []],
       dateEnd: ['', []],
     });
   }
 
   onSubmit() {
-    // if (this.dataForm.valid) {
-    //   console.log(this.dataForm.value)
-    //   this.searchService
-    //     .getInvoicesOfPerson(this.dataForm.value as SearchParams)
-    //     .subscribe((invoices) => {
-    //       if (invoices) {
-    //         this.invoices = invoices;
-    //         this.personName = invoices?.[0].accountRazon!;
-    //       } else {
-    //         this.snackbar.open('No se encontró información', '', {
-    //           duration: 3000,
-    //           horizontalPosition: 'end',
-    //           verticalPosition: 'top',
-    //           panelClass: ['snackbar-error'],
-    //         });
-    //         this.invoices = null;
-    //         this.personName = null;
-    //       }
-    //     });
-    // }
+    if (this.dataForm.valid) {
+      // console.log(this.dataForm.value);
+      this.searchInvoices
+        .getInvoicesOfPerson(this.dataForm.value as SearchParams)
+        .subscribe((invoices) => {
+          if (invoices) {
+            // console.log(invoices);
+            this.searchResults.emit(invoices);
+            // this.invoices = invoices;
+            // this.formSubmitted.emit(this.dataForm.value);
+            // this.personName = invoices?.[0].accountRazon!;
+          } else {
+            this.snackbar.open('No se encontró información', '', {
+              duration: 3000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'],
+            });
+            // this.invoices = null;
+            // this.personName = null;
+          }
+        });
+    }
   }
 
   preventNonNumeric(event: KeyboardEvent) {

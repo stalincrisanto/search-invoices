@@ -1,1 +1,15 @@
-<p>search-result works!</p>
+<!-- <app-table
+  [columns]="columns"
+  [data]="invoices || []"
+></app-table> -->
+
+<app-table
+  *ngIf="invoices && invoices.length > 0"
+  [columns]="columns"
+  [data]="invoices"
+></app-table>
+
+<!-- Mostrar mensaje si no hay datos -->
+<div *ngIf="!invoices || invoices.length === 0">
+  No hay resultados para mostrar.
+</div>
