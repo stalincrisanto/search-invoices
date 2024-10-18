@@ -173,7 +173,7 @@ export const INVOICES_DATA = [
     chs_data_dat: '2024-01-12 18:43:08',
     id: 32438087,
     ruta_pdf_generado:
-      '/C:/software/smart-scheduler/resources/sri/output/ride_pdf_invoice/1206202401176816465000120020030002825430028254317.pdf',
+      'https://main-graphql-media-mediabucket-bucketd7feb781-12j7qtewbafu9.s3.eu-west-1.amazonaws.com/Presurizados%20con%20c%C3%A1mara.pdf',
     ruta_xml_comprobante_recibido:
       '/C:/software/smart-scheduler/resources/sri/output/xml_response_receipt/1206202401176816465000120020030002825430028254317.xml',
   },
@@ -183,7 +183,7 @@ export const INVOICES_DATA = [
     account_razon: 'CRISANTO CAIZA STALIN OSWALDO',
     chs_data_dat: '2024-06-01 08:14:09',
     ruta_pdf_generado:
-      '/C:/software/smart-scheduler/resources/sri/output/ride_pdf_invoice/0106202401176816465000120090040002031870020318719.pdf',
+      'https://main-graphql-media-mediabucket-bucketd7feb781-12j7qtewbafu9.s3.eu-west-1.amazonaws.com/Presurizados%20con%20c%C3%A1mara.pdf',
     ruta_xml_comprobante_recibido:
       '/C:/software/smart-scheduler/resources/sri/output/xml_response_receipt/0106202401176816465000120090040002031870020318719.xml',
   },
@@ -193,7 +193,7 @@ export const INVOICES_DATA = [
     chs_data_dat: '2024-06-12 18:43:08',
     id: 32438087,
     ruta_pdf_generado:
-      '/C:/software/smart-scheduler/resources/sri/output/ride_pdf_invoice/1206202401176816465000120020030002825430028254317.pdf',
+      'https://main-graphql-media-mediabucket-bucketd7feb781-12j7qtewbafu9.s3.eu-west-1.amazonaws.com/Presurizados%20con%20c%C3%A1mara.pdf',
     ruta_xml_comprobante_recibido:
       '/C:/software/smart-scheduler/resources/sri/output/xml_response_receipt/1206202401176816465000120020030002825430028254317.xml',
   },
@@ -203,7 +203,7 @@ export const INVOICES_DATA = [
     chs_data_dat: '2024-06-09 18:43:08',
     id: 32438087,
     ruta_pdf_generado:
-      '/C:/software/smart-scheduler/resources/sri/output/ride_pdf_invoice/1206202401176816465000120020030002825430028254317.pdf',
+      'https://main-graphql-media-mediabucket-bucketd7feb781-12j7qtewbafu9.s3.eu-west-1.amazonaws.com/Presurizados%20con%20c%C3%A1mara.pdf',
     ruta_xml_comprobante_recibido:
       '/C:/software/smart-scheduler/resources/sri/output/xml_response_receipt/1206202401176816465000120020030002825430028254317.xml',
   },
@@ -213,7 +213,7 @@ export const INVOICES_DATA = [
     chs_data_dat: '2024-06-24 18:40:05',
     id: 33801133,
     ruta_pdf_generado:
-      '/C:/software/smart-scheduler/resources/sri/output/ride_pdf_invoice/2406202401176816465000120020040002387460023874616.pdf',
+      'https://main-graphql-media-mediabucket-bucketd7feb781-12j7qtewbafu9.s3.eu-west-1.amazonaws.com/Presurizados%20con%20c%C3%A1mara.pdf',
     ruta_xml_comprobante_recibido:
       '/C:/software/smart-scheduler/resources/sri/output/xml_response_receipt/2406202401176816465000120020040002387460023874616.xml',
   },

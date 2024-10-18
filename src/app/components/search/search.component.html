@@ -30,12 +30,13 @@
               El número de cédula debe tener 10 dígitos.
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline"floatLabel="always">
             <mat-label>Fecha desde</mat-label>
             <input
               matInput
               [matDatepicker]="dateStart"
               formControlName="dateStart"
+              placeholder="Selecciona una fecha de inicio"
             />
             <mat-hint>Mes/Día/Año</mat-hint>
             <mat-datepicker-toggle
@@ -54,7 +55,7 @@
               [matDatepicker]="dateEnd"
               formControlName="dateEnd"
               [min]="dataForm.get('dateStart')?.value"
-              placeholder="Seleccione una fecha"
+              placeholder="Selecciona una fecha de fin"
             />
             <mat-hint>Mes/Día/Año</mat-hint>
             <mat-datepicker-toggle
