@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDatepickerModule,
     FormsModule,
     MatTableModule,
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,

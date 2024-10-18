@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from '../../services/search.service';
 import { SearchParams } from '../../../../shared/models/search.model';
 import { Invoice } from '../../../../shared/models/invoice.model';
+import { cardIdLengthValidator } from '../../../../validators/id.validator';
 
 @Component({
   selector: 'app-search-form',
@@ -22,11 +23,11 @@ export class SearchFormComponent {
     private snackbar: MatSnackBar
   ) {
     this.dataForm = this.fb.group({
-      // cardId: ['', [Validators.required, cardIdLengthValidator()]],
+      cardId: ['', [Validators.required, cardIdLengthValidator()] ],
       // dateStart: [new Date(), [Validators.required]],
       // dateEnd: ['', [Validators.required]],
 
-      cardId: ['', []],
+      // cardId: ['', []],
       dateStart: ['', []],
       dateEnd: ['', []],
     });

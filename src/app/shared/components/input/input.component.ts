@@ -1,5 +1,10 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+import { ValidationService } from '../../validators/reusableValidator';
 
 @Component({
   selector: 'app-input',
@@ -13,17 +18,24 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class InputComponent implements ControlValueAccessor{
+export class InputComponent implements ControlValueAccessor {
   @Input() id: string = '';
   @Input() formControlName: string = '';
   @Input() label: string = 'Campo';
   @Input() required: boolean = false;
   @Input() placeholder: string = 'Ingresar un valor';
   @Input() inputmode: string = 'numeric';
+  @Input() control!: FormControl;
 
   value: any;
   onChange = (value: any) => {};
   onTouched = () => {};
+
+  constructor(private validationService: ValidationService) {}
+
+  getErrorMessage(): string | null {
+    return this.validationService.getErrorMessage(this.control);
+  }
 
   writeValue(value: any): void {
     this.value = value;

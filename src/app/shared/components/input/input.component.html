@@ -1,4 +1,4 @@
-<!-- PARA EL INPUT DE TIPO NUMBER 
+<!-- PARA EL INPUT DE TIPO NUMBER
  (keydown)="preventNonNumeric($event)" -->
 
 <mat-form-field appearance="outline" floatLabel="always">
@@ -11,7 +11,23 @@
     [placeholder]="placeholder"
     [value]="value"
     (input)="handleInput($event)"
+    [formControl]="control"
   />
+
+  <!-- <mat-error *ngIf="control.hasError('required')">
+    El número de cédula es obligatorio.
+  </mat-error> -->
+  <mat-error *ngIf="control.errors">
+    {{ getErrorMessage() }}
+  </mat-error>
+  <mat-error *ngIf="control.invalid && control.touched">
+    <!-- Aquí puedes mostrar mensajes de error basados en las validaciones -->
+    <!-- <span *ngIf="control.hasError('required')">Este campo es obligatorio</span> -->
+
+    <!-- <span *ngIf="control.errors?.['']">
+      Debe tener al menos {{ control.errors?.minlength.requiredLength }} caracteres
+    </span> -->
+  </mat-error>
 
   <!-- <mat-error *ngIf="dataForm.get('cardId')?.hasError('required')">
     El número de cédula es obligatorio.
