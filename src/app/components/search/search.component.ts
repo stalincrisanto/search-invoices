@@ -33,8 +33,9 @@ export class SearchComponent {
         .getInvoicesOfPerson(this.dataForm.value as SearchParams)
         .subscribe((invoices) => {
           if (invoices) {
+            console.log("invoices", invoices);
             this.invoices = invoices;
-            this.personName = invoices?.[0].accountRazon!;
+            this.personName = invoices?.[0].account_razon!;
           } else {
             this.snackbar.open('No se encontró información', '', {
               duration: 3000,

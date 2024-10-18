@@ -8,7 +8,8 @@ import { INVOICES_DATA } from '../data/data';
   providedIn: 'root',
 })
 export class SearchService {
-  private apiUrl = 'http://localhost:5125/api/clients';
+  private apiUrl =
+    'http://127.0.0.1:5000/api/bills?identificacion=12345&fecha_inicio=2023-01-01&fecha_fin=2023-01-31';
 
   constructor(private http: HttpClient) {}
 
@@ -28,8 +29,9 @@ export class SearchService {
   getInvoicesOfPerson(input: SearchParams): Observable<Invoice[] | null> {
     const { cardId } = input;
     const invoicesOfPerson = INVOICES_DATA.filter(
-      ({ accoutFiscalId }) => accoutFiscalId === cardId
+      ({ account_fiscal_id }) => account_fiscal_id === cardId
     );
+    console.log("en el servicio", invoicesOfPerson);
     return invoicesOfPerson.length != 0 ? of(invoicesOfPerson) : of(null);
   }
 }

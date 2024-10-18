@@ -1,29 +1,58 @@
 <table mat-table [dataSource]="invoices || []" class="mat-elevation-z8">
-  <ng-container matColumnDef="chsDataDat">
-    <th mat-header-cell *matHeaderCellDef> Fecha </th>
-    <td mat-cell *matCellDef="let invoice"> {{invoice.chsDataDat}} </td>
+  <ng-container matColumnDef="chs_data_dat">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let invoice">{{ invoice.chs_data_dat }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="rutaXmlEnviado">
-    <th mat-header-cell *matHeaderCellDef> Ruta xml enviado </th>
-    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaXmlEnviado}} </td>
+  <!-- <ng-container matColumnDef="ruta_pdf_generado">
+    <th mat-header-cell *matHeaderCellDef> Pdf </th>
+    <td mat-cell *matCellDef="let invoice"> {{invoice.ruta_pdf_generado}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="rutaXmlRecibido">
-    <th mat-header-cell *matHeaderCellDef> Ruta xml recibido </th>
-    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaXmlRecibido}} </td>
+   -->
+
+  <ng-container matColumnDef="ruta_pdf_generado">
+    <th mat-header-cell *matHeaderCellDef>Visualizar / Descargar PDF</th>
+    <td mat-cell *matCellDef="let invoice" class="icon-cell">
+      <a
+        [href]="invoice.ruta_pdf_generado"
+        target="_blank"
+        aria-label="Previsualizar PDF"
+      >
+        <mat-icon color="accent">visibility</mat-icon>
+      </a>
+      <a
+        [href]="invoice.ruta_pdf_generado"
+        target="_blank"
+        download
+        style="margin-left: 45px"
+      >
+        <mat-icon aria-label="Descargar PDF">picture_as_pdf</mat-icon>
+      </a>
+    </td>
   </ng-container>
 
-  <ng-container matColumnDef="rutaXmlComprobanteRecibido">
-    <th mat-header-cell *matHeaderCellDef> Ruta xml comprobante recibido </th>
-    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaXmlComprobanteRecibido}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="rutaPdfGenerado">
-    <th mat-header-cell *matHeaderCellDef> Ruta pdf generado </th>
-    <td mat-cell *matCellDef="let invoice"> {{invoice.rutaPdfGenerado}} </td>
+  <ng-container matColumnDef="ruta_xml_comprobante_recibido">
+    <th mat-header-cell *matHeaderCellDef>Visualizar / Descargar XML</th>
+    <td mat-cell *matCellDef="let invoice" class="icon-cell">
+      <a
+        [href]="invoice.ruta_xml_comprobante_recibido"
+        target="_blank"
+        aria-label="Previsualizar PDF"
+      >
+        <mat-icon color="accent">visibility</mat-icon>
+      </a>
+      <a
+        [href]="invoice.ruta_xml_comprobante_recibido"
+        target="_blank"
+        download
+        style="margin-left: 45px"
+      >
+        <mat-icon aria-label="Descargar XML">file_copy</mat-icon>
+      </a>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

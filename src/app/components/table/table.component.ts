@@ -10,12 +10,12 @@ export class TableComponent {
   @Input() invoices: Invoice[] | null = [];
 
   protected displayedColumns: string[] = [
-    'chsDataDat',
-    'rutaXmlEnviado',
-    'rutaXmlRecibido',
-    'rutaXmlComprobanteRecibido',
-    'rutaPdfGenerado',
+    'chs_data_dat',
+    'ruta_pdf_generado',
+    'ruta_xml_comprobante_recibido',
   ];
 
-  constructor() {}
+  constructor() {
+    console.log(this.invoices);
+  }
 }
