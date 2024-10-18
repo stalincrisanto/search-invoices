@@ -10,6 +10,7 @@
       label="Número de cédula"
       inputmode="numeric"
       [control]="$any(dataForm).get('cardId')"
+      (keydown)="preventNonNumeric($event)"
     />
     <app-input-date
       datePickerId="dateStart"

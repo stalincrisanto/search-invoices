@@ -5,6 +5,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { ValidationService } from '../../validators/reusableValidator';
+import { InputValidationService } from './validators/input.validator';
 
 @Component({
   selector: 'app-input',
@@ -31,10 +32,10 @@ export class InputComponent implements ControlValueAccessor {
   onChange = (value: any) => {};
   onTouched = () => {};
 
-  constructor(private validationService: ValidationService) {}
+  constructor(private inputValidationService: InputValidationService) {}
 
   getErrorMessage(): string | null {
-    return this.validationService.getErrorMessage(this.control);
+    return this.inputValidationService.getErrorMessage(this.control);
   }
 
   writeValue(value: any): void {
