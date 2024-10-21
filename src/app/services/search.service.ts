@@ -18,7 +18,7 @@ export class SearchService {
     dateStart,
     dateEnd,
   }: SearchParams): Observable<Invoice[] | null> {
-    console.log("apuUrl", this.apiUrl);
+    console.log({dateStart, dateEnd});
     const formattedDateStart = dateStart
       ? dayjs(dateStart).startOf('day').format('YYYY-MM-DD HH:mm:ss')
       : null;
@@ -48,33 +48,32 @@ export class SearchService {
     );
   }
 
-  // getInvoicesOfPerson({
-  //   cardId,
-  //   dateStart,
-  //   dateEnd,
-  // }: SearchParams): Observable<Invoice[] | null> {
-  //   const urlOnlyCardId = `${this.apiUrl}?identificacion=${cardId}`;
-  //   const urlWithDates = `${
-  //     this.apiUrl
-  //   }?identificacion=${cardId}&fecha_inicio=${dayjs(dateStart)
-  //     .startOf('day')
-  //     .format('YYYY-MM-DD HH:mm:ss')
-  //     .toString()}&fecha_fin=${dayjs(dateEnd)
-  //     .endOf('day')
-  //     .format('YYYY-MM-DD HH:mm:ss')
-  //     .toString()}`;
+  //TODO: move to other folder
+  // test only with url
+  downloadPDF(routePdf: string) {
+    const routeDownloadPdf = `${this.apiUrl}download?file=${routePdf}`;
 
-  //   const invoicesRequest =
-  //     dateStart && dateEnd
-  //       ? this.http.get<Invoice[]>(urlWithDates)
-  //       : this.http.get<Invoice[]>(urlOnlyCardId);
+    const harcodeRoute =
+      'http://10.108.210.78:5000/api/bills/download?file=C:\\Users\\eduardo.jaramillo\\Documents\\dev\\Pruebas SIR\\0112202301176816465000120010030000009410000094118.pdf';
 
-  //   return invoicesRequest.pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       console.error('Error al buscar el cliente', error);
-  //       return of(null);
-  //     }),
-  //     map((invoices) => (invoices && invoices.length > 0 ? invoices : null))
-  //   );
-  // }
+    console.log({ routePdf, routeDownloadPdf });
+
+    this.http.get(harcodeRoute, { responseType: 'blob' }).subscribe({
+      next: (data: Blob) => {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = routePdf;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error descargando el archivo', err);
+      },
+      complete: () => {
+        console.log('Descarga completa');
+      },
+    });
+  }
 }

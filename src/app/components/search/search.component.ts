@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as dayjs from 'dayjs';
 import { SearchService } from 'src/app/services/search.service';
 import { Invoice, SearchParams } from 'src/app/types/invoice.type';
 import { cardIdLengthValidator } from 'src/app/validators/id.validator';
@@ -15,6 +21,8 @@ export class SearchComponent {
   dataForm: FormGroup;
   invoices: Invoice[] | null = null;
   personName: string | null = null;
+  dateStartDefault = new FormControl(dayjs().startOf('month').toISOString());
+  dateEndDefault = new FormControl(dayjs().endOf('month').toISOString());
 
   constructor(
     private fb: FormBuilder,
@@ -23,8 +31,8 @@ export class SearchComponent {
   ) {
     this.dataForm = this.fb.group({
       cardId: ['', [Validators.required, cardIdLengthValidator()]],
-      dateStart: ['', []],
-      dateEnd: ['', []],
+      dateStart: [new Date(), []],
+      dateEnd: [new Date(), []],
     });
   }
 

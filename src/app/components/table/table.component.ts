@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SearchService } from 'src/app/services/search.service';
 import { Invoice } from 'src/app/types/invoice.type';
 
 @Component({
@@ -15,5 +16,10 @@ export class TableComponent {
     'ruta_xml_comprobante_recibido',
   ];
 
-  constructor() {}
+  constructor(private searchService: SearchService) {}
+
+  downloadPDF(routePdf: string) {
+    const finalUrl = routePdf.replace(/\//g, '\\').replace(/^\\C:/, 'C:');
+    this.searchService.downloadPDF(finalUrl);
+  }
 }
