@@ -38,7 +38,7 @@
               formControlName="dateStart"
               placeholder="Selecciona una fecha de inicio"
             />
-            <mat-hint>Mes/Día/Año</mat-hint>
+            <mat-hint>Año-Mes-Día</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
               [for]="dateStart"
@@ -57,7 +57,7 @@
               [min]="dataForm.get('dateStart')?.value"
               placeholder="Selecciona una fecha de fin"
             />
-            <mat-hint>Mes/Día/Año</mat-hint>
+            <mat-hint>Año-Mes-Día</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
               [for]="dateEnd"

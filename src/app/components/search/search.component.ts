@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from 'src/app/services/search.service';
 import { Invoice, SearchParams } from 'src/app/types/invoice.type';
@@ -33,7 +34,6 @@ export class SearchComponent {
         .getInvoicesOfPerson(this.dataForm.value as SearchParams)
         .subscribe((invoices) => {
           if (invoices) {
-            console.log("invoices", invoices);
             this.invoices = invoices;
             this.personName = invoices?.[0].account_razon!;
           } else {

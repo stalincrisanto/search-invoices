@@ -15,7 +15,5 @@ export class TableComponent {
     'ruta_xml_comprobante_recibido',
   ];
 
-  constructor() {
-    console.log(this.invoices);
-  }
+  constructor() {}
 }
