@@ -21,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InfoPersonComponent } from './components/info-person/info-person.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { ModalComponent } from './components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     SearchComponent,
     TableComponent,
     InfoPersonComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatNativeDateModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   exports: [
   ],

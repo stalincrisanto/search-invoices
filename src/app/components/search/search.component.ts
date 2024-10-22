@@ -21,8 +21,12 @@ export class SearchComponent {
   dataForm: FormGroup;
   invoices: Invoice[] | null = null;
   personName: string | null = null;
-  dateStartDefault = new FormControl(dayjs().startOf('month').toISOString());
-  dateEndDefault = new FormControl(dayjs().endOf('month').toISOString());
+  dateStartDefault = new FormControl(
+    new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+  );
+  dateEndDefault = new FormControl(
+    new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
+  );
 
   constructor(
     private fb: FormBuilder,
@@ -48,7 +52,7 @@ export class SearchComponent {
             this.snackbar.open('No se encontró información', '', {
               duration: 3000,
               horizontalPosition: 'end',
-              verticalPosition: 'top',
+              verticalPosition: 'bottom',
               panelClass: ['snackbar-error'],
             });
             this.invoices = null;

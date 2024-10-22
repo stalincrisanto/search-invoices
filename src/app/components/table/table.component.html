@@ -7,33 +7,33 @@
   <ng-container matColumnDef="ruta_pdf_generado">
     <th mat-header-cell *matHeaderCellDef>Visualizar / Descargar PDF</th>
     <td mat-cell *matCellDef="let invoice" class="icon-cell">
-      <button mat-icon-button aria-label="Visualizar pdf">
-        <mat-icon>visibility</mat-icon>
+      <button
+        mat-icon-button
+        aria-label="Visualizar pdf"
+        (click)="openModal(invoice.ruta_xml_comprobante_recibido)"
+      >
+        <mat-icon class="icon-button">visibility</mat-icon>
       </button>
-      <button mat-icon-button aria-label="Descargar pdf" (click)="downloadPDF(invoice.ruta_pdf_generado)">
-        <mat-icon>get_app</mat-icon>
+      <button
+        mat-icon-button
+        aria-label="Descargar pdf"
+        (click)="downloadPDF(invoice.ruta_pdf_generado)"
+      >
+        <mat-icon class="icon-button">get_app</mat-icon>
       </button>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="ruta_xml_comprobante_recibido">
-    <th mat-header-cell *matHeaderCellDef>Visualizar / Descargar XML</th>
+    <th mat-header-cell *matHeaderCellDef>Descargar XML</th>
     <td mat-cell *matCellDef="let invoice" class="icon-cell">
-      <!-- <a
-        [href]="invoice.ruta_xml_comprobante_recibido"
-        target="_blank"
-        aria-label="Previsualizar PDF"
+      <button
+        mat-icon-button
+        aria-label="Descargar pdf"
+        (click)="downloadPDF(invoice.ruta_pdf_generado)"
       >
-        <mat-icon color="accent">visibility</mat-icon>
-      </a> -->
-      <a
-        [href]="invoice.ruta_xml_comprobante_recibido"
-        target="_blank"
-        download
-        style="margin-left: 45px"
-      >
-        <mat-icon aria-label="Descargar XML">file_copy</mat-icon>
-      </a>
+        <mat-icon class="icon-button">get_app</mat-icon>
+      </button>
     </td>
   </ng-container>
 

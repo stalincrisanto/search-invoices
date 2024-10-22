@@ -18,7 +18,7 @@ export class SearchService {
     dateStart,
     dateEnd,
   }: SearchParams): Observable<Invoice[] | null> {
-    console.log({dateStart, dateEnd});
+    console.log({ dateStart, dateEnd });
     const formattedDateStart = dateStart
       ? dayjs(dateStart).startOf('day').format('YYYY-MM-DD HH:mm:ss')
       : null;
@@ -75,5 +75,22 @@ export class SearchService {
         console.log('Descarga completa');
       },
     });
+  }
+
+  viewPDF(routePdf: string): Observable<string> {
+    const routeViewPdf = `${this.apiUrl}download?file=${routePdf}`;
+    const harcodeRoute =
+      'http://10.108.210.78:5000/api/bills/download?file=C:\\Users\\eduardo.jaramillo\\Documents\\dev\\Pruebas SIR\\0112202301176816465000120010030000009410000094118.pdf';
+
+    return this.http.get(harcodeRoute, { responseType: 'blob' }).pipe(
+      map((data: Blob) => {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        return url;
+      }),
+      catchError((err) => {
+        return throwError(() => new Error('No se pudo cargar el archivo PDF'));
+      })
+    );
   }
 }
