@@ -31,8 +31,8 @@ export class SearchComponent {
   ) {
     this.dataForm = this.fb.group({
       cardId: ['', [Validators.required, cardIdLengthValidator()]],
-      dateStart: [new Date(), []],
-      dateEnd: [new Date(), []],
+      dateStart: [this.dateStartDefault.value, []],
+      dateEnd: [this.dateEndDefault.value, []],
     });
   }
 

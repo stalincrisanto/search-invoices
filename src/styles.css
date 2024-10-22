@@ -19,10 +19,7 @@ body {
 .snackbar-error {
   .mdc-snackbar__surface {
     background-color: #bd362f !important;
-    /* min-width: auto !important;
-    max-width: 100% !important;  */
   }
-
   .mdc-snackbar__label {
     color: white !important;
   }
@@ -31,4 +28,15 @@ body {
 .btn-search {
   margin-top: 20px;
   border-radius: 20px !important;
+  background-color: #223e77 !important;
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+.btn-search:hover {
+  background-color: #ec253a !important; /* Color de fondo al hacer hover */
+  color: black !important; /* Color del texto al hacer hover */
+}
+
+.toolbar-header {
+  background-color: #ec253a !important;
 }
