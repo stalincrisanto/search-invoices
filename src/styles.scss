@@ -1,16 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-html,
-body {
-  height: 100%;
-}
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import '/src/app/styles/variables.scss';
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: $font-family-primary;
 }
 
+.container {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+}
+
+/*
 .container {
   max-width: 90%;
   margin: 20px auto;
@@ -19,8 +22,6 @@ body {
 .snackbar-error {
   .mdc-snackbar__surface {
     background-color: #bd362f !important;
-    /* min-width: auto !important;
-    max-width: 100% !important;  */
   }
 
   .mdc-snackbar__label {
@@ -31,4 +32,4 @@ body {
 .btn-search {
   margin-top: 20px;
   border-radius: 20px !important;
-}
+} */

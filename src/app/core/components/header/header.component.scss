@@ -1,0 +1,9 @@
+@import '/src/app/styles/variables.scss';
+
+::ng-deep .header {
+  background-color: $color-primary !important;
+}
+
+::ng-deep .header__span {
+  color: white;
+}

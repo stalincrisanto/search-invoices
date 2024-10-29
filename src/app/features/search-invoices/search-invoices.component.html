@@ -1,2 +1,4 @@
-<app-search-form (searchResults)="onSearchResults($event || [])"></app-search-form>
-<app-search-result [invoices]="invoices"></app-search-result>
+<div style="width: 90%; margin: 20px auto;">
+    <app-search-form (searchResults)="onSearchResults($event || [])"></app-search-form>
+    <app-search-result [invoices]="invoices"></app-search-result>
+</div>
