@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoreModule } from './core/core.module';
@@ -40,7 +40,7 @@ import { SearchInvoicesModule } from './features/search-invoices/search-invoices
     SearchInvoicesModule
 ],
   exports: [],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-CA' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

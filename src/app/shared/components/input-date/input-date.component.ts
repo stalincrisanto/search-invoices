@@ -13,10 +13,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class InputDateComponent implements ControlValueAccessor {
+export class InputDateComponent{
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() datePickerId: string = '';
+  @Input() min: string = '';
 
   value: Date | null = null;
   onChange = (value: any) => {};
@@ -24,6 +25,7 @@ export class InputDateComponent implements ControlValueAccessor {
 
   writeValue(value: Date | null): void {
     this.value = value;
+    this.onChange(value);
   }
 
   registerOnChange(fn: any): void {
@@ -41,7 +43,6 @@ export class InputDateComponent implements ControlValueAccessor {
   }
 
   handleInput(event: any) {
-    console.log(event);
     const value = event.value;
     this.value = value;
     this.onChange(value);

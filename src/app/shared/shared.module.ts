@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { ContainerComponent } from './components/container/container.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
     InputComponent,
     InputDateComponent,
     TableComponent,
+    ContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -27,13 +30,15 @@ import { MatTableModule } from '@angular/material/table';
     MatDatepickerModule,
     FormsModule,
     MatTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   exports: [
     ButtonComponent,
     InputComponent,
     InputDateComponent,
     TableComponent,
+    ContainerComponent
   ],
 })
 export class SharedModule {}

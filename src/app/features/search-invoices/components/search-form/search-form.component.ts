@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchService } from '../../services/search.service';
 import { SearchParams } from '../../../../shared/models/search.model';
@@ -15,7 +20,14 @@ export class SearchFormComponent {
   @Output() searchResults = new EventEmitter<Invoice[] | null>();
 
   dataForm: FormGroup;
-  // personName: string | null = null;
+
+  dateStartDefault = new FormControl(
+    new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+  );
+  dateEndDefault = new FormControl(
+    new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
+  );
+
 
   constructor(
     private fb: FormBuilder,
@@ -23,13 +35,9 @@ export class SearchFormComponent {
     private snackbar: MatSnackBar
   ) {
     this.dataForm = this.fb.group({
-      cardId: ['', [Validators.required, cardIdLengthValidator()] ],
-      // dateStart: [new Date(), [Validators.required]],
-      // dateEnd: ['', [Validators.required]],
-
-      // cardId: ['', []],
-      dateStart: ['', []],
-      dateEnd: ['', []],
+      cardId: ['', [Validators.required, cardIdLengthValidator()]],
+      dateStart: [this.dateStartDefault.value],
+      dateEnd: [this.dateEndDefault.value],
     });
   }
 

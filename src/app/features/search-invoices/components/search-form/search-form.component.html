@@ -1,8 +1,5 @@
 <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
   <div class="form-row">
-    <!-- TODO: refactor errors as dynamic in input/inputdate component -->
-    <!-- TODO: add type to generic input -->
-    <!-- Input mode for show numeric keys on cellphones -->
     <app-input
       id="cardId"
       formControlName="cardId"
@@ -23,6 +20,7 @@
       formControlName="dateEnd"
       placeholder="Selecciona una fecha"
       label="Fecha hasta"
+      [min]="$any(dataForm).get('dateStart').value"
     />
   </div>
   <div class="btn-group">

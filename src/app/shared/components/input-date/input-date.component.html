@@ -5,6 +5,8 @@
     [matDatepicker]="datePickerId"
     [placeholder]="placeholder"
     (dateInput)="setValue($event.value)"
+    [min]="min"
+    [value]="value"
   />
   <mat-hint>Mes/Día/Año</mat-hint>
   <mat-datepicker-toggle
@@ -13,7 +15,3 @@
   ></mat-datepicker-toggle>
   <mat-datepicker #datePickerId></mat-datepicker>
 </mat-form-field>
-
-<!-- <mat-error *ngIf="dataForm.get('dateStart')?.hasError('required')">
-  La fecha de inicio es obligatorio.
-</mat-error> -->
