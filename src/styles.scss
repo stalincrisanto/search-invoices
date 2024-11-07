@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
-@import '/src/app/styles/variables.scss';
+@import "/src/app/styles/theme.scss";
 
 body {
   margin: 0;
@@ -13,11 +11,9 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
+// @include mat.all-component-themes($theme);
+
 /*
-.container {
-  max-width: 90%;
-  margin: 20px auto;
-}
 
 .snackbar-error {
   .mdc-snackbar__surface {
@@ -27,9 +23,4 @@ body {
   .mdc-snackbar__label {
     color: white !important;
   }
-}
-
-.btn-search {
-  margin-top: 20px;
-  border-radius: 20px !important;
 } */

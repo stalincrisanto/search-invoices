@@ -28,7 +28,13 @@
         [min]="$any(dataForm).get('dateStart').value"
       />
     </div>
-    <app-button label="Buscar" />
-    <app-button label="Limpiar" color="secondary" type="reset" />
+    <div class="flex justify-content-between flex-wrap mb-5">
+      <div class="ml-2">
+        <app-button label="Buscar" />
+      </div>
+      <div class="ml-5">
+        <app-button label="Limpiar" color="secondary" type="reset" />
+      </div>
+    </div>
   </div>
 </form>
