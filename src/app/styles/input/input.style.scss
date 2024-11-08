@@ -1,0 +1,26 @@
+mat-form-field {
+    mat-label {
+        color: map-get($mat-accent, darker);
+    }
+    //   .mat-form-field-wrapper {
+    //     padding: 10px 0; // Asegura el espacio entre el texto y el borde
+    //   }
+
+    //   .mat-input-element {
+    //     color: yellow; // Color del texto
+    //     font-size: 16px; // Tamaño de fuente
+    //     padding: 8px; // Relleno en el input
+    //   }
+
+    //   .mat-form-field-label {
+    //     color: yellow; // Color del label cuando está flotando
+    //   }
+
+    //   .mat-form-field-underline {
+    //     background-color: rgba(yellow, 0.5); // Línea de fondo del input
+    //   }
+
+    //   .mat-form-field-ripple {
+    //     background-color: yellow; // Color de la línea al enfocar
+    //   }
+}
